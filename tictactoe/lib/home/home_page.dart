@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/core/page.dart';
+import 'package:tictactoe/core/value_keys.dart';
 import 'package:tictactoe/game/game_page.dart';
 import 'package:tictactoe/home/home_options.dart';
 import 'package:tictactoe/player/player_page.dart';
@@ -93,6 +94,7 @@ class _DeviceHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: ValueKey(homePageAppBar),
         title: Text('TicTacToe'),
       ),
       body: body,
