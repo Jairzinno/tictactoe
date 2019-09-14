@@ -13,53 +13,27 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Page(
-      onMobileBuilder: (context, _, __) => Scaffold(
-        appBar: AppBar(
-          title: Text('TicTacToe'),
-        ),
-        body: Column(
-          children: <Widget>[
-            Spacer(
-              flex: 2,
-            ),
-            HomeOptions(
-              onNewGame: () {
-                onNewGame(context);
-              },
-              onHistory: onHistory,
-            ),
-            Spacer(
-              flex: 1,
-            ),
-          ],
+      onMobileBuilder: (context, _, __) => _DeviceHomePage(
+        body: HomeOptions(
+          onNewGame: () {
+            onNewGame(context);
+          },
         ),
       ),
-      onTabletBuilder: (context, _, __) => Scaffold(
-        appBar: AppBar(
-          title: Text('TicTacToe'),
-        ),
+      onTabletBuilder: (context, _, __) => _DeviceHomePage(
         body: Row(
           children: <Widget>[
             Spacer(
               flex: 1,
             ),
-            Container(
-              width: 1000,
-              child: Column(
-                children: <Widget>[
-                  Spacer(
-                    flex: 2,
-                  ),
-                  HomeOptions(
-                    onNewGame: () {
-                      onNewGame(context);
-                    },
-                    onHistory: onHistory,
-                  ),
-                  Spacer(
-                    flex: 1,
-                  ),
-                ],
+            ConstrainedBox(
+              constraints: BoxConstraints.loose(Size(
+                  MediaQuery.of(context).size.width / 3,
+                  MediaQuery.of(context).size.height)),
+              child: HomeOptions(
+                onNewGame: () {
+                  onNewGame(context);
+                },
               ),
             ),
             Spacer(
@@ -68,34 +42,10 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      onWebBuilder: (context, data, __) => Row(
-        children: <Widget>[
-          Spacer(
-            flex: 1,
-          ),
-          Container(
-            width: 500,
-            child: Column(
-              children: <Widget>[
-                Spacer(
-                  flex: 2,
-                ),
-                HomeOptions(
-                  onNewGame: () {
-                    onNewGame(context);
-                  },
-                  onHistory: onHistory,
-                ),
-                Spacer(
-                  flex: 1,
-                ),
-              ],
-            ),
-          ),
-          Spacer(
-            flex: 1,
-          ),
-        ],
+      onWebBuilder: (context, data, __) => _WebHomePage(
+        onNewGame: () {
+          onNewGame(context);
+        },
       ),
     );
   }
@@ -132,6 +82,46 @@ class HomePage extends StatelessWidget {
       }));
     }
   }
+}
 
-  void onHistory() {}
+class _DeviceHomePage extends StatelessWidget {
+  final Widget body;
+
+  const _DeviceHomePage({Key key, @required this.body}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('TicTacToe'),
+      ),
+      body: body,
+    );
+  }
+}
+
+class _WebHomePage extends StatelessWidget {
+  final VoidCallback onNewGame;
+
+  const _WebHomePage({Key key, @required this.onNewGame}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Spacer(
+          flex: 1,
+        ),
+        ConstrainedBox(
+          constraints: BoxConstraints.loose(Size(
+              MediaQuery.of(context).size.width / 4,
+              MediaQuery.of(context).size.height)),
+          child: HomeOptions(onNewGame: onNewGame),
+        ),
+        Spacer(
+          flex: 1,
+        ),
+      ],
+    );
+  }
 }
