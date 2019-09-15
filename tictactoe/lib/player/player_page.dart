@@ -62,21 +62,23 @@ class _WebPlayerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Spacer(
-          flex: 1,
-        ),
-        ConstrainedBox(
-          constraints: BoxConstraints.loose(Size(
-              MediaQuery.of(context).size.width / 4,
-              MediaQuery.of(context).size.height)),
-          child: PlayerForm(onPlayerName: onPlayerName),
-        ),
-        Spacer(
-          flex: 1,
-        ),
-      ],
+    return Material(
+      child: Row(
+        children: <Widget>[
+          Spacer(
+            flex: 1,
+          ),
+          ConstrainedBox(
+            constraints: BoxConstraints.loose(Size(
+                MediaQuery.of(context).size.width / 4,
+                MediaQuery.of(context).size.height)),
+            child: PlayerForm(onPlayerName: onPlayerName),
+          ),
+          Spacer(
+            flex: 1,
+          ),
+        ],
+      ),
     );
   }
 }
