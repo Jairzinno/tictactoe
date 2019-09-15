@@ -1,12 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:tictactoe/home/home_page.dart';
-import 'package:tictactoe/model/game.dart';
 import 'package:tictactoe/service/game_service.dart';
 
 void main() => runApp(MyApp(
-      gameService: GameService(Game(), StreamController.broadcast()),
+      gameService: GameService(),
     ));
 
 class MyApp extends StatelessWidget {

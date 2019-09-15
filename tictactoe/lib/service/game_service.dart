@@ -6,47 +6,45 @@ import 'package:tictactoe/model/shape/shape.dart';
 import 'package:tictactoe/model/turn.dart';
 
 class GameService {
-  final Game game;
-  final StreamController<List<Turn>> historyController;
+  Game _game;
+  StreamController<List<Turn>> _historyController;
 
-  Stream<List<Turn>> get history => historyController.stream;
+  Stream<List<Turn>> get history => _historyController.stream;
 
-  GameService(this.game, this.historyController) {
-    this.historyController.onListen = () {
-      this.historyController.sink.add(game.turns);
+  void addPlayer(String playerName) {
+    _game.addPlayer(playerName);
+  }
+
+  bool needPlayer() => !_game.canPlay();
+
+  void setup(Game game, StreamController<List<Turn>> historyController) {
+    _game = game;
+    _historyController = historyController;
+    _historyController.onListen = () {
+      _historyController.sink.add(_game.turns);
     };
   }
 
-  void addPlayer(String playerName) {
-    game.addPlayer(playerName);
+  void start() {
+    _game.start();
   }
-
-  bool needPlayer() => !game.canPlay();
 
   void positionTapped(Position position) {
-    final turn = game.addTurnForPosition(position);
+    final turn = _game.addTurnForPosition(position);
     if (turn != null) {
-      historyController.sink.add(game.turns);
+      _historyController.sink.add(_game.turns);
     }
-    if (game.didPlayerWin()) {
+    if (turn.win) {
       print('we have a winner');
     } else {
-      game.changePlayer();
+      _game.changePlayer();
     }
-  }
-
-  bool didPlayerWin() => game.didPlayerWin();
-
-  void changePlayer() => game.changePlayer();
-
-  void start() {
-    game.start();
   }
 
   void stop() {
-    game.stop();
-    historyController.close();
+    _game.stop();
+    _historyController.close();
   }
 
-  Shape shapeForPosition(Position position) => game.state[position];
+  Shape shapeForPosition(Position position) => _game.state[position];
 }

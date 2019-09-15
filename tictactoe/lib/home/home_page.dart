@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:tictactoe/core/page.dart';
 import 'package:tictactoe/core/value_keys.dart';
 import 'package:tictactoe/game/game_page.dart';
 import 'package:tictactoe/home/home_options.dart';
+import 'package:tictactoe/model/game.dart';
 import 'package:tictactoe/player/player_page.dart';
 import 'package:tictactoe/service/game_service.dart';
 
@@ -52,6 +55,7 @@ class HomePage extends StatelessWidget {
   }
 
   void onNewGame(BuildContext context) {
+    gameService.setup(Game(), StreamController.broadcast());
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
       return PlayerPage(
@@ -74,9 +78,9 @@ class HomePage extends StatelessWidget {
         );
       }));
     } else {
+      gameService.start();
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
-        gameService.start();
         return GamePage(
           gameService: gameService,
         );
