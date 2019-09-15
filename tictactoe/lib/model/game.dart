@@ -39,9 +39,9 @@ class Game {
     final turn = Turn(position, _currentPlayer);
     if (turn.isValid(turns)) {
       turns.add(turn);
-      print(turn);
       state[position] = _currentPlayer.shape.copy();
-      print(state);
+      turn.win = didPlayerWin();
+      turn.draw = didPlayerDraw();
       return turn;
     }
     return null;
@@ -75,6 +75,8 @@ class Game {
       return win;
     });
   }
+
+  bool didPlayerDraw() => !didPlayerWin() && state.length == 9;
 
   void stop() {
     _player1 = null;

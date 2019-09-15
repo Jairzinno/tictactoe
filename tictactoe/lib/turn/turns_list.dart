@@ -34,10 +34,11 @@ class TurnsList extends StatelessWidget {
                               fontWeight: FontWeight.bold)),
                       TextSpan(text: ' position')
                     ])),
-                trailing: ShapeSpace(
+                leading: ShapeSpace(
                   width: 60,
                   shape: turn.player.shape,
                 ),
+                trailing: _trailing(turn),
               );
             },
           );
@@ -48,5 +49,15 @@ class TurnsList extends StatelessWidget {
         }
       },
     );
+  }
+
+  Widget _trailing(Turn turn) {
+    if (turn.win) {
+      return Icon(Icons.assistant_photo);
+    }
+    if (turn.draw) {
+      return Icon(Icons.pause);
+    }
+    return null;
   }
 }

@@ -4,6 +4,8 @@ import 'package:tictactoe/model/position.dart';
 class Turn {
   final Position position;
   final Player player;
+  bool win = false;
+  bool draw = false;
 
   Turn(this.position, this.player);
 
@@ -14,6 +16,6 @@ class Turn {
 
   @override
   String toString() {
-    return '${player.name}-$position:${player.shape}';
+    return '${player.name}-$position:${player.shape}, win: $win, draw: $draw';
   }
 }
