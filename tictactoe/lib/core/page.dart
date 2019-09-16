@@ -35,13 +35,19 @@ class Page<T> extends StatelessWidget {
     var stream = onStream != null ? onStream(context) : null;
     switch (_pageSize()) {
       case _PageSize.phone:
-        return onMobileBuilder(context, future, stream);
+        return onMobileBuilder != null
+            ? onMobileBuilder(context, future, stream)
+            : Container();
       case _PageSize.tablet:
-        return onTabletBuilder(context, future, stream);
+        return onTabletBuilder != null
+            ? onTabletBuilder(context, future, stream)
+            : Container();
       case _PageSize.web:
-        return onWebBuilder(context, future, stream);
+        return onWebBuilder != null
+            ? onWebBuilder(context, future, stream)
+            : Container();
       default:
-        return onMobileBuilder(context, future, stream);
+        return Container();
     }
   }
 
