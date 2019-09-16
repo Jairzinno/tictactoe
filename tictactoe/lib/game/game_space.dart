@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:tictactoe/game/shape_space.dart';
+import 'package:tictactoe/game/game_service.dart';
 import 'package:tictactoe/model/position.dart';
-import 'package:tictactoe/service/game_service.dart';
 
 class GameSpace extends StatefulWidget {
   final ValueChanged<Position> onPositionTap;

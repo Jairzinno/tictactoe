@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/home/home_page.dart';
-import 'package:tictactoe/service/game_service.dart';
+import 'package:tictactoe/game/game_service.dart';
 
 void main() => runApp(MyApp(
       gameService: GameService(),

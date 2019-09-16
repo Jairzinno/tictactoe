@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/core/page.dart';
+import 'package:tictactoe/game/game_service.dart';
 import 'package:tictactoe/model/turn.dart';
-import 'package:tictactoe/service/game_service.dart';
 import 'package:tictactoe/turn/turns_list.dart';
 
 class TurnsPage extends StatelessWidget {
   final GameService gameService;
 
   const TurnsPage({Key key, @required this.gameService}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Page<List<Turn>>(
