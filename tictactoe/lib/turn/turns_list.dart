@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/core/value_keys.dart';
 import 'package:tictactoe/game/shape_space.dart';
 import 'package:tictactoe/model/turn.dart';
 
@@ -15,6 +16,7 @@ class TurnsList extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.active &&
             snapshot.hasData) {
           return ListView.builder(
+            key: ValueKey(gamePageTurnsListView),
             itemCount: snapshot.data.length,
             itemBuilder: (context, index) {
               final turn = snapshot.data[index];

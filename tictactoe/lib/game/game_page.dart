@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/core/page.dart';
+import 'package:tictactoe/core/value_keys.dart';
 import 'package:tictactoe/game/game_space.dart';
 import 'package:tictactoe/model/position.dart';
 import 'package:tictactoe/game/game_service.dart';
@@ -79,14 +80,17 @@ class _MobileGamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: ValueKey(gamePageAppBar),
         automaticallyImplyLeading: false,
         leading: IconButton(
+          key: ValueKey(gamePageStopIconButton),
           icon: Icon(Icons.close),
           onPressed: onStop,
         ),
         title: Text('Game'),
         actions: <Widget>[
           IconButton(
+            key: ValueKey(gamePageTurnsIconButton),
             icon: Icon(Icons.list),
             onPressed: onTurns,
           )
@@ -117,8 +121,10 @@ class _TabletGamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: ValueKey(gamePageAppBar),
         automaticallyImplyLeading: false,
         leading: IconButton(
+          key: ValueKey(gamePageStopIconButton),
           icon: Icon(Icons.close),
           onPressed: onStop,
         ),

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:tictactoe/core/value_keys.dart';
 import 'package:tictactoe/game/shape_space.dart';
 import 'package:tictactoe/game/game_service.dart';
 import 'package:tictactoe/model/position.dart';
@@ -34,6 +35,7 @@ class _GameSpaceState extends State<GameSpace> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     ShapeSpace(
+                      key: ValueKey(gamePageTopLeftShapeSpace),
                       width: (width - 20) / 3,
                       shape:
                           widget.gameService.shapeForPosition(Position.topLeft),
@@ -49,6 +51,7 @@ class _GameSpaceState extends State<GameSpace> {
                       height: (width - 20) / 3,
                     ),
                     ShapeSpace(
+                      key: ValueKey(gamePageTopCenterShapeSpace),
                       width: (width - 20) / 3,
                       shape: widget.gameService
                           .shapeForPosition(Position.topCenter),
@@ -64,6 +67,7 @@ class _GameSpaceState extends State<GameSpace> {
                       height: (width - 20) / 3,
                     ),
                     ShapeSpace(
+                      key: ValueKey(gamePageTopRightShapeSpace),
                       width: (width - 20) / 3,
                       shape: widget.gameService
                           .shapeForPosition(Position.topRight),
@@ -84,6 +88,7 @@ class _GameSpaceState extends State<GameSpace> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     ShapeSpace(
+                      key: ValueKey(gamePageCenterLeftShapeSpace),
                       width: (width - 20) / 3,
                       shape: widget.gameService
                           .shapeForPosition(Position.centerLeft),
@@ -99,6 +104,7 @@ class _GameSpaceState extends State<GameSpace> {
                       height: (width - 20) / 3,
                     ),
                     ShapeSpace(
+                      key: ValueKey(gamePageCenterShapeSpace),
                       width: (width - 20) / 3,
                       shape:
                           widget.gameService.shapeForPosition(Position.center),
@@ -114,6 +120,7 @@ class _GameSpaceState extends State<GameSpace> {
                       height: (width - 20) / 3,
                     ),
                     ShapeSpace(
+                      key: ValueKey(gamePageCenterRightShapeSpace),
                       width: (width - 20) / 3,
                       shape: widget.gameService
                           .shapeForPosition(Position.centerRight),
@@ -134,6 +141,7 @@ class _GameSpaceState extends State<GameSpace> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     ShapeSpace(
+                      key: ValueKey(gamePageBottomLeftShapeSpace),
                       width: (width - 20) / 3,
                       shape: widget.gameService
                           .shapeForPosition(Position.bottomLeft),
@@ -149,6 +157,7 @@ class _GameSpaceState extends State<GameSpace> {
                       height: (width - 20) / 3,
                     ),
                     ShapeSpace(
+                      key: ValueKey(gamePageBottomCenterShapeSpace),
                       width: (width - 20) / 3,
                       shape: widget.gameService
                           .shapeForPosition(Position.bottomCenter),
@@ -164,6 +173,7 @@ class _GameSpaceState extends State<GameSpace> {
                       height: (width - 20) / 3,
                     ),
                     ShapeSpace(
+                      key: ValueKey(gamePageBottomRightShapeSpace),
                       width: (width - 20) / 3,
                       shape: widget.gameService
                           .shapeForPosition(Position.bottomRight),
