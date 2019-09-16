@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
       onMobileBuilder: (context, _, __) => _DeviceHomePage(
         body: HomeOptions(
           onNewGame: () {
-            onNewGame(context);
+            _onNewGame(context);
           },
         ),
       ),
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                   MediaQuery.of(context).size.height)),
               child: HomeOptions(
                 onNewGame: () {
-                  onNewGame(context);
+                  _onNewGame(context);
                 },
               ),
             ),
@@ -48,44 +48,52 @@ class HomePage extends StatelessWidget {
       ),
       onWebBuilder: (context, data, __) => _WebHomePage(
         onNewGame: () {
-          onNewGame(context);
+          _onNewGame(context);
         },
       ),
     );
   }
 
-  void onNewGame(BuildContext context) {
+  void _onNewGame(BuildContext context) {
     gameService.setup(Game(), StreamController.broadcast());
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
       return PlayerPage(
         onPlayerName: (playerName) {
-          onPlayerName(context, playerName);
+          _onPlayerName(context, playerName);
         },
       );
     }));
   }
 
-  void onPlayerName(BuildContext context, String playerName) {
+  void _onPlayerName(BuildContext context, String playerName) {
     gameService.addPlayer(playerName);
     if (gameService.needPlayer()) {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
-        return PlayerPage(
-          onPlayerName: (playerName) {
-            onPlayerName(context, playerName);
-          },
-        );
-      }));
+      _toPlayerPage(context);
     } else {
-      gameService.start();
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
-        return GamePage(
-          gameService: gameService,
-        );
-      }));
+      _toGamePage(context);
     }
+  }
+
+  void _toPlayerPage(BuildContext context) {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+      return PlayerPage(
+        onPlayerName: (playerName) {
+          _onPlayerName(context, playerName);
+        },
+      );
+    }));
+  }
+
+  void _toGamePage(BuildContext context) {
+    gameService.start();
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+      return GamePage(
+        gameService: gameService,
+      );
+    }));
   }
 }
 

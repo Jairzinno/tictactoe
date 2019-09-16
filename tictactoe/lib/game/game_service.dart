@@ -11,18 +11,18 @@ class GameService {
 
   Stream<List<Turn>> get history => _historyController.stream;
 
-  void addPlayer(String playerName) {
-    _game.addPlayer(playerName);
-  }
-
-  bool needPlayer() => !_game.canPlay();
-
   void setup(Game game, StreamController<List<Turn>> historyController) {
     _game = game;
     _historyController = historyController;
     _historyController.onListen = () {
       _historyController.sink.add(_game.turns);
     };
+  }
+
+  bool needPlayer() => !_game.canPlay();
+
+  void addPlayer(String playerName) {
+    _game.addPlayer(playerName);
   }
 
   void start() {
@@ -44,5 +44,5 @@ class GameService {
     _historyController.close();
   }
 
-  Shape shapeForPosition(Position position) => _game.state[position];
+  Shape shapeForPosition(Position position) => _game.shapeForPosition(position);
 }

@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
   final GameService gameService;
 
   const MyApp({Key key, this.gameService}) : super(key: key);
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

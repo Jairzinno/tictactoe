@@ -8,8 +8,8 @@ import 'package:tictactoe/turn/turn.dart';
 class Game {
   Player _player1;
   Player _player2;
-  final List<Turn> turns = [];
-  final Map<Position, Shape> state = {};
+  final List<Turn> _turns = [];
+  final Map<Position, Shape> _state = {};
 
   Player _currentPlayer;
   bool _gameEnded = false;
@@ -17,6 +17,12 @@ class Game {
   Game();
 
   bool canPlay() => _player1 != null && _player2 != null;
+
+  List<Turn> get turns {
+    final copy = List<Turn>();
+    copy.addAll(_turns);
+    return copy;
+  }
 
   void addPlayer(String playerName) {
     if (_player1 == null) {
@@ -28,8 +34,8 @@ class Game {
 
   void start() {
     _currentPlayer = _player1;
-    state.clear();
-    turns.clear();
+    _state.clear();
+    _turns.clear();
   }
 
   Turn addTurnForPosition(Position position) {
@@ -37,11 +43,11 @@ class Game {
       return null;
     }
     final turn = Turn(position, _currentPlayer);
-    if (turn.isValid(turns)) {
-      turns.add(turn);
-      state[position] = _currentPlayer.shape.copy();
-      turn.win = didPlayerWin();
-      turn.draw = didPlayerDraw();
+    if (turn.isValid(_turns)) {
+      _turns.add(turn);
+      _state[position] = _currentPlayer.shape.copy();
+      turn.win = _didPlayerWin();
+      turn.draw = _didPlayerDraw();
       return turn;
     }
     return null;
@@ -55,34 +61,36 @@ class Game {
     }
   }
 
-  bool didPlayerWin() {
+  Shape shapeForPosition(Position position) => _state[position];
+
+  bool _didPlayerWin() {
     return Position.winners.any((line) {
       final start = line.first;
       final center = line[1];
       final end = line.last;
-      print('${state[start]}-${state[center]}-${state[end]}');
+      print('${_state[start]}-${_state[center]}-${_state[end]}');
 
       final win =
-          state[start].runtimeType == _currentPlayer.shape.runtimeType &&
-              state[center].runtimeType == _currentPlayer.shape.runtimeType &&
-              state[end].runtimeType == _currentPlayer.shape.runtimeType;
+          _state[start].runtimeType == _currentPlayer.shape.runtimeType &&
+              _state[center].runtimeType == _currentPlayer.shape.runtimeType &&
+              _state[end].runtimeType == _currentPlayer.shape.runtimeType;
       if (win) {
-        state[start].highlight = true;
-        state[center].highlight = true;
-        state[end].highlight = true;
+        _state[start].highlight = true;
+        _state[center].highlight = true;
+        _state[end].highlight = true;
         _gameEnded = true;
       }
       return win;
     });
   }
 
-  bool didPlayerDraw() => !didPlayerWin() && state.length == 9;
+  bool _didPlayerDraw() => !_didPlayerWin() && _state.length == 9;
 
   void stop() {
     _player1 = null;
     _player2 = null;
     _gameEnded = false;
-    state.clear();
-    turns.clear();
+    _state.clear();
+    _turns.clear();
   }
 }

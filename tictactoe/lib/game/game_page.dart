@@ -26,10 +26,10 @@ class _GamePageState extends State<GamePage> {
           widget.gameService.positionTapped(position);
         },
         onStop: () {
-          onStopGame(context);
+          _onStopGame(context);
         },
         onTurns: () {
-          onGoToTurns(context);
+          _onGoToTurns(context);
         },
       ),
       onTabletBuilder: (context, _, __) => _TabletGamePage(
@@ -38,7 +38,7 @@ class _GamePageState extends State<GamePage> {
           widget.gameService.positionTapped(position);
         },
         onStop: () {
-          onStopGame(context);
+          _onStopGame(context);
         },
       ),
       onWebBuilder: (context, _, __) => _WebGamePage(
@@ -50,12 +50,12 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
-  void onStopGame(BuildContext context) {
+  void _onStopGame(BuildContext context) {
     widget.gameService.stop();
     Navigator.of(context).pop();
   }
 
-  void onGoToTurns(BuildContext context) {
+  void _onGoToTurns(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return TurnsPage(gameService: widget.gameService);
     }));
