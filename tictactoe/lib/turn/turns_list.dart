@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/core/value_keys.dart';
 import 'package:tictactoe/game/shape_space.dart';
-import 'package:tictactoe/model/turn.dart';
+import 'package:tictactoe/turn/turn.dart';
 
 class TurnsList extends StatelessWidget {
   final Stream<List<Turn>> turns;

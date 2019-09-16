@@ -1,5 +1,5 @@
-import 'package:tictactoe/model/player.dart';
-import 'package:tictactoe/model/position.dart';
+import 'package:tictactoe/game/position.dart';
+import 'package:tictactoe/player/player.dart';
 
 class Turn {
   final Position position;

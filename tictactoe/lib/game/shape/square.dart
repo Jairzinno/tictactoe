@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:tictactoe/model/shape/shape.dart';
+import 'package:tictactoe/game/shape/shape.dart';
 
 class Square extends Shape {
   Square(int color) : super(color);

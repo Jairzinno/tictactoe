@@ -1,9 +1,9 @@
-import 'package:tictactoe/model/player.dart';
-import 'package:tictactoe/model/position.dart';
-import 'package:tictactoe/model/shape/circle.dart';
-import 'package:tictactoe/model/shape/cross.dart';
-import 'package:tictactoe/model/shape/shape.dart';
-import 'package:tictactoe/model/turn.dart';
+import 'package:tictactoe/game/position.dart';
+import 'package:tictactoe/game/shape/circle.dart';
+import 'package:tictactoe/game/shape/cross.dart';
+import 'package:tictactoe/game/shape/shape.dart';
+import 'package:tictactoe/player/player.dart';
+import 'package:tictactoe/turn/turn.dart';
 
 class Game {
   Player _player1;

@@ -1,4 +1,4 @@
-import 'package:tictactoe/model/shape/shape.dart';
+import 'package:tictactoe/game/shape/shape.dart';
 
 class Player {
   final String name;

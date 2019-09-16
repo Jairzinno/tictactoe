@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:tictactoe/model/shape/shape.dart';
+import 'package:tictactoe/game/shape/shape.dart';
 
 class Circle extends Shape {
   Circle(int color) : super(color);
