@@ -33,7 +33,7 @@ class GameService {
     final turn = _game.addTurnForPosition(position);
     if (turn != null) {
       _historyController.sink.add(_game.turns);
-      if (!turn.win) {
+      if (!turn.win && !turn.draw) {
         _game.changePlayer();
       }
     }
