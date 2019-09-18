@@ -18,11 +18,7 @@ class Game {
 
   bool canPlay() => _player1 != null && _player2 != null;
 
-  List<Turn> get turns {
-    final copy = List<Turn>();
-    copy.addAll(_turns);
-    return copy;
-  }
+  List<Turn> get turns => List<Turn>.unmodifiable(_turns);
 
   void addPlayer(String playerName) {
     if (_player1 == null) {
@@ -68,7 +64,6 @@ class Game {
       final start = line.first;
       final center = line[1];
       final end = line.last;
-      print('${_state[start]}-${_state[center]}-${_state[end]}');
 
       final win =
           _state[start].runtimeType == _currentPlayer.shape.runtimeType &&
