@@ -7,12 +7,9 @@ import 'package:tictactoe/game/shape_space.dart';
 import 'package:tictactoe/game/game_service.dart';
 
 class GameSpace extends StatefulWidget {
-  final ValueChanged<Position> onPositionTap;
   final GameService gameService;
 
-  const GameSpace(
-      {Key key, @required this.onPositionTap, @required this.gameService})
-      : super(key: key);
+  const GameSpace({Key key, @required this.gameService}) : super(key: key);
 
   @override
   _GameSpaceState createState() => _GameSpaceState();
@@ -40,8 +37,10 @@ class _GameSpaceState extends State<GameSpace> {
                       shape:
                           widget.gameService.shapeForPosition(Position.topLeft),
                       onTap: () {
+                        print('tapped top left');
+                        widget.gameService.positionTapped(Position.topLeft);
                         setState(() {
-                          widget.onPositionTap(Position.topLeft);
+                          widget.gameService.positionTapped(Position.topLeft);
                         });
                       },
                     ),
@@ -57,7 +56,7 @@ class _GameSpaceState extends State<GameSpace> {
                           .shapeForPosition(Position.topCenter),
                       onTap: () {
                         setState(() {
-                          widget.onPositionTap(Position.topCenter);
+                          widget.gameService.positionTapped(Position.topCenter);
                         });
                       },
                     ),
@@ -73,7 +72,7 @@ class _GameSpaceState extends State<GameSpace> {
                           .shapeForPosition(Position.topRight),
                       onTap: () {
                         setState(() {
-                          widget.onPositionTap(Position.topRight);
+                          widget.gameService.positionTapped(Position.topRight);
                         });
                       },
                     ),
@@ -94,7 +93,8 @@ class _GameSpaceState extends State<GameSpace> {
                           .shapeForPosition(Position.centerLeft),
                       onTap: () {
                         setState(() {
-                          widget.onPositionTap(Position.centerLeft);
+                          widget.gameService
+                              .positionTapped(Position.centerLeft);
                         });
                       },
                     ),
@@ -110,7 +110,7 @@ class _GameSpaceState extends State<GameSpace> {
                           widget.gameService.shapeForPosition(Position.center),
                       onTap: () {
                         setState(() {
-                          widget.onPositionTap(Position.center);
+                          widget.gameService.positionTapped(Position.center);
                         });
                       },
                     ),
@@ -126,7 +126,8 @@ class _GameSpaceState extends State<GameSpace> {
                           .shapeForPosition(Position.centerRight),
                       onTap: () {
                         setState(() {
-                          widget.onPositionTap(Position.centerRight);
+                          widget.gameService
+                              .positionTapped(Position.centerRight);
                         });
                       },
                     ),
@@ -147,7 +148,8 @@ class _GameSpaceState extends State<GameSpace> {
                           .shapeForPosition(Position.bottomLeft),
                       onTap: () {
                         setState(() {
-                          widget.onPositionTap(Position.bottomLeft);
+                          widget.gameService
+                              .positionTapped(Position.bottomLeft);
                         });
                       },
                     ),
@@ -163,7 +165,8 @@ class _GameSpaceState extends State<GameSpace> {
                           .shapeForPosition(Position.bottomCenter),
                       onTap: () {
                         setState(() {
-                          widget.onPositionTap(Position.bottomCenter);
+                          widget.gameService
+                              .positionTapped(Position.bottomCenter);
                         });
                       },
                     ),
@@ -179,7 +182,8 @@ class _GameSpaceState extends State<GameSpace> {
                           .shapeForPosition(Position.bottomRight),
                       onTap: () {
                         setState(() {
-                          widget.onPositionTap(Position.bottomRight);
+                          widget.gameService
+                              .positionTapped(Position.bottomRight);
                         });
                       },
                     ),

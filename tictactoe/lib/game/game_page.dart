@@ -22,9 +22,6 @@ class _GamePageState extends State<GamePage> {
     return Page(
       onMobileBuilder: (context, _, __) => _MobileGamePage(
         gameService: widget.gameService,
-        positionTapped: (position) {
-          widget.gameService.positionTapped(position);
-        },
         onStop: () {
           _onStopGame(context);
         },
@@ -34,18 +31,12 @@ class _GamePageState extends State<GamePage> {
       ),
       onTabletBuilder: (context, _, __) => _TabletGamePage(
         gameService: widget.gameService,
-        positionTapped: (position) {
-          widget.gameService.positionTapped(position);
-        },
         onStop: () {
           _onStopGame(context);
         },
       ),
       onWebBuilder: (context, _, __) => _WebGamePage(
         gameService: widget.gameService,
-        positionTapped: (position) {
-          widget.gameService.positionTapped(position);
-        },
       ),
     );
   }
@@ -66,15 +57,13 @@ class _MobileGamePage extends StatelessWidget {
   final GameService gameService;
   final VoidCallback onStop;
   final VoidCallback onTurns;
-  final ValueChanged<Position> positionTapped;
 
-  const _MobileGamePage(
-      {Key key,
-      this.gameService,
-      this.onStop,
-      this.onTurns,
-      this.positionTapped})
-      : super(key: key);
+  const _MobileGamePage({
+    Key key,
+    this.gameService,
+    this.onStop,
+    this.onTurns,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +89,6 @@ class _MobileGamePage extends StatelessWidget {
         child: Center(
           child: GameSpace(
             gameService: gameService,
-            onPositionTap: positionTapped,
           ),
         ),
       ),
@@ -111,11 +99,12 @@ class _MobileGamePage extends StatelessWidget {
 class _TabletGamePage extends StatelessWidget {
   final GameService gameService;
   final VoidCallback onStop;
-  final ValueChanged<Position> positionTapped;
 
-  const _TabletGamePage(
-      {Key key, this.gameService, this.onStop, this.positionTapped})
-      : super(key: key);
+  const _TabletGamePage({
+    Key key,
+    this.gameService,
+    this.onStop,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +126,6 @@ class _TabletGamePage extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 2,
             child: GameSpace(
               gameService: gameService,
-              onPositionTap: positionTapped,
             ),
           ),
           Container(
@@ -154,10 +142,11 @@ class _TabletGamePage extends StatelessWidget {
 
 class _WebGamePage extends StatelessWidget {
   final GameService gameService;
-  final ValueChanged<Position> positionTapped;
 
-  const _WebGamePage({Key key, this.gameService, this.positionTapped})
-      : super(key: key);
+  const _WebGamePage({
+    Key key,
+    this.gameService,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +158,6 @@ class _WebGamePage extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 2,
             child: GameSpace(
               gameService: gameService,
-              onPositionTap: positionTapped,
             ),
           ),
           Container(

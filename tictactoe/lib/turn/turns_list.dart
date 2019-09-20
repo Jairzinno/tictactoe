@@ -10,46 +10,48 @@ class TurnsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Turn>>(
-      stream: turns,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.active &&
-            snapshot.hasData) {
-          return ListView.builder(
-            key: ValueKey(gamePageTurnsListView),
-            itemCount: snapshot.data.length,
-            itemBuilder: (context, index) {
-              final turn = snapshot.data[index];
-              return ListTile(
-                title: Text(turn.player.name),
-                subtitle: RichText(
-                    text: TextSpan(
-                        text: 'Played the',
-                        style: TextStyle(
-                          color: Colors.black54,
-                        ),
-                        children: [
-                      TextSpan(
-                          text: ' ${turn.position}',
+    return Material(
+      child: StreamBuilder<List<Turn>>(
+        stream: turns,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active &&
+              snapshot.hasData) {
+            return ListView.builder(
+              key: ValueKey(gamePageTurnsListView),
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) {
+                final turn = snapshot.data[index];
+                return ListTile(
+                  title: Text(turn.player.name),
+                  subtitle: RichText(
+                      text: TextSpan(
+                          text: 'Played the',
                           style: TextStyle(
-                              color: Theme.of(context).textTheme.button.color,
-                              fontWeight: FontWeight.bold)),
-                      TextSpan(text: ' position')
-                    ])),
-                leading: ShapeSpace(
-                  width: 60,
-                  shape: turn.player.shape,
-                ),
-                trailing: _trailing(turn),
-              );
-            },
-          );
-        } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
+                            color: Colors.black54,
+                          ),
+                          children: [
+                        TextSpan(
+                            text: ' ${turn.position}',
+                            style: TextStyle(
+                                color: Theme.of(context).textTheme.button.color,
+                                fontWeight: FontWeight.bold)),
+                        TextSpan(text: ' position')
+                      ])),
+                  leading: ShapeSpace(
+                    width: 60,
+                    shape: turn.player.shape,
+                  ),
+                  trailing: _trailing(turn),
+                );
+              },
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/game/shape/cross.dart';
 import 'package:tictactoe/game/shape/shape.dart';
 
 class ShapeSpace extends StatelessWidget {
@@ -25,9 +26,13 @@ class ShapeSpace extends StatelessWidget {
           color: shape.highlight ? Color(0xFF404040) : null,
           width: width,
           height: width,
-          child: CustomPaint(
-            painter: ShapePainter(shape),
-          ),
+          child: shape is Cross
+              ? CrossSpace(
+                  shape: shape,
+                )
+              : CircleSpace(
+                  shape: shape,
+                ),
         ),
         onTap: onTap,
       );
@@ -35,10 +40,34 @@ class ShapeSpace extends StatelessWidget {
   }
 }
 
-class ShapePainter extends CustomPainter {
+class CrossSpace extends StatelessWidget {
   final Shape shape;
 
-  ShapePainter(this.shape);
+  const CrossSpace({Key key, this.shape}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _ShapePainter(shape),
+    );
+  }
+}
+
+class CircleSpace extends StatelessWidget {
+  final Shape shape;
+
+  const CircleSpace({Key key, this.shape}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _ShapePainter(shape),
+    );
+  }
+}
+
+class _ShapePainter extends CustomPainter {
+  final Shape shape;
+
+  _ShapePainter(this.shape);
 
   @override
   void paint(Canvas canvas, Size size) {
