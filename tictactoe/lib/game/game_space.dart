@@ -37,7 +37,6 @@ class _GameSpaceState extends State<GameSpace> {
                       shape:
                           widget.gameService.shapeForPosition(Position.topLeft),
                       onTap: () {
-                        print('tapped top left');
                         widget.gameService.positionTapped(Position.topLeft);
                         setState(() {
                           widget.gameService.positionTapped(Position.topLeft);
