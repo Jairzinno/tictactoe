@@ -13,7 +13,7 @@ class TurnsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Page<List<Turn>>(
       onStream: (context) => gameService.history,
-      onMobileBuilder: (context, _, stream) => _TurnsPage(
+      onMobileBuilder: (context, stream) => _TurnsPage(
         turns: stream,
       ),
     );

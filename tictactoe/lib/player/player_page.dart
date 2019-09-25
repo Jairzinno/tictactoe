@@ -11,10 +11,10 @@ class PlayerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Page(
-        onMobileBuilder: (BuildContext context, _, __) => _DevicePlayerPage(
+        onMobileBuilder: (BuildContext context, _) => _DevicePlayerPage(
               body: PlayerForm(onPlayerName: onPlayerName),
             ),
-        onTabletBuilder: (BuildContext context, _, __) => _DevicePlayerPage(
+        onTabletBuilder: (BuildContext context, _) => _DevicePlayerPage(
               body: Row(
                 children: <Widget>[
                   Spacer(
@@ -32,7 +32,7 @@ class PlayerPage extends StatelessWidget {
                 ],
               ),
             ),
-        onWebBuilder: (BuildContext context, _, __) =>
+        onWebBuilder: (BuildContext context, _) =>
             _WebPlayerPage(onPlayerName: onPlayerName));
   }
 }

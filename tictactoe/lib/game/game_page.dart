@@ -20,7 +20,7 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Page(
-      onMobileBuilder: (context, _, __) => _MobileGamePage(
+      onMobileBuilder: (context, _) => _MobileGamePage(
         gameService: widget.gameService,
         onStop: () {
           _onStopGame(context);
@@ -29,13 +29,13 @@ class _GamePageState extends State<GamePage> {
           _onGoToTurns(context);
         },
       ),
-      onTabletBuilder: (context, _, __) => _TabletGamePage(
+      onTabletBuilder: (context, _) => _TabletGamePage(
         gameService: widget.gameService,
         onStop: () {
           _onStopGame(context);
         },
       ),
-      onWebBuilder: (context, _, __) => _WebGamePage(
+      onWebBuilder: (context, _) => _WebGamePage(
         gameService: widget.gameService,
       ),
     );

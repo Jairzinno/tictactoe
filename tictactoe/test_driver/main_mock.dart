@@ -8,7 +8,7 @@ class MockApp extends StatelessWidget {
   final Widget home;
 
   const MockApp({Key key, this.home}) : super(key: key);
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

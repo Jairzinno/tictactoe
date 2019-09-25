@@ -17,14 +17,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Page(
-      onMobileBuilder: (context, _, __) => _DeviceHomePage(
+      onMobileBuilder: (context, _) => _DeviceHomePage(
         body: HomeOptions(
           onNewGame: () {
             _onNewGame(context);
           },
         ),
       ),
-      onTabletBuilder: (context, _, __) => _DeviceHomePage(
+      onTabletBuilder: (context, _) => _DeviceHomePage(
         body: Row(
           children: <Widget>[
             Spacer(
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      onWebBuilder: (context, data, __) => _WebHomePage(
+      onWebBuilder: (context, data) => _WebHomePage(
         onNewGame: () {
           _onNewGame(context);
         },
