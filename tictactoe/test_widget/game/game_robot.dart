@@ -4,7 +4,6 @@ import 'package:mockito/mockito.dart';
 import 'package:tictactoe/core/value_keys.dart';
 import 'package:tictactoe/game/game_service.dart';
 import 'package:tictactoe/game/position.dart';
-import 'package:tictactoe/game/shape/cross.dart';
 import 'package:tictactoe/game/shape_space.dart';
 
 import '../core/robot.dart';

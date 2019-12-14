@@ -3,8 +3,6 @@ import 'package:tictactoe/game/game.dart';
 import 'package:tictactoe/game/position.dart';
 import 'package:tictactoe/game/shape/cross.dart';
 
-import '../mock.dart';
-
 main() {
   group('game tests', () {
     group('can play tests', () {

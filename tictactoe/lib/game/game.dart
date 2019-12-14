@@ -64,20 +64,24 @@ class Game {
       final start = line.first;
       final center = line[1];
       final end = line.last;
+      final win = _onlyCrosses(_currentPlayer.shape, _state[start],
+              _state[center], _state[end]) ||
+          _onlyCircles(
+              _currentPlayer.shape, _state[start], _state[center], _state[end]);
 
-      final win =
-          _state[start].runtimeType == _currentPlayer.shape.runtimeType &&
-              _state[center].runtimeType == _currentPlayer.shape.runtimeType &&
-              _state[end].runtimeType == _currentPlayer.shape.runtimeType;
-      if (win) {
-        _state[start].highlight = true;
-        _state[center].highlight = true;
-        _state[end].highlight = true;
-        _gameEnded = true;
-      }
+      _state[start]?.highlight = win;
+      _state[center]?.highlight = win;
+      _state[end]?.highlight = win;
+      _gameEnded = win;
       return win;
     });
   }
+
+  bool _onlyCrosses(Shape player, Shape start, Shape center, Shape end) =>
+      player is Cross && start is Cross && center is Cross && end is Cross;
+
+  bool _onlyCircles(Shape player, Shape start, Shape center, Shape end) =>
+      player is Circle && start is Circle && center is Circle && end is Circle;
 
   bool _didPlayerDraw() => !_didPlayerWin() && _state.length == 9;
 

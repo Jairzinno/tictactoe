@@ -9,7 +9,6 @@ import 'package:tictactoe/game/game_space.dart';
 import 'package:tictactoe/game/position.dart';
 import 'package:tictactoe/game/shape/circle.dart';
 import 'package:tictactoe/game/shape/cross.dart';
-import 'package:tictactoe/game/shape_space.dart';
 
 import 'game_robot.dart';
 

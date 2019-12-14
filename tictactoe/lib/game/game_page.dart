@@ -3,7 +3,6 @@ import 'package:tictactoe/core/page.dart';
 import 'package:tictactoe/core/value_keys.dart';
 import 'package:tictactoe/game/game_space.dart';
 import 'package:tictactoe/game/game_service.dart';
-import 'package:tictactoe/game/position.dart';
 import 'package:tictactoe/turn/turns_list.dart';
 import 'package:tictactoe/turn/turns_page.dart';
 

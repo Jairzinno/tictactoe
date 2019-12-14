@@ -16,6 +16,8 @@ class TurnsPage extends StatelessWidget {
       onMobileBuilder: (context, stream) => _TurnsPage(
         turns: stream,
       ),
+      onTabletBuilder: (BuildContext context, Stream stream) => SizedBox(),
+      onWebBuilder: (BuildContext context, Stream stream) => SizedBox(),
     );
   }
 }

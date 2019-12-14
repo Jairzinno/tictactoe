@@ -26,10 +26,8 @@ main() {
     });
 
     test('game starts with asking the first player\'s name', () async {
-      if (await robot.isMobile) {
-        await robot.tapStartButton();
-        await robot.isShowingPlayerPage();
-      }
+      await robot.tapStartButton();
+      await robot.isShowingPlayerPage();
     });
 
     test('game does not continue without a player\'s name', () async {
@@ -137,12 +135,11 @@ main() {
       if (await robot.isMobile) {
         robot.tapToTurns();
       }
-      await robot.listTilesInList(
+      await robot.hasTurnAtIndex(
           0, Position.topLeft, 'Jairzinno', 'CrossSpace');
-      await robot.listTilesInList(1, Position.topRight, 'John', 'CircleSpace');
-      await robot.listTilesInList(
-          3, Position.centerLeft, 'John', 'CircleSpace');
-      await robot.goBack();
-    }, timeout: Timeout(Duration(minutes: 2)));
+      if (await robot.isMobile) {
+        await robot.goBack();
+      }
+    }, timeout: Timeout(Duration(minutes: 1)));
   });
 }

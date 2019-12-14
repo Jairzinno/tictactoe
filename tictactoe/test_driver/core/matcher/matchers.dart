@@ -1,5 +1,4 @@
 import 'package:test/test.dart';
-import 'package:tictactoe/game/position.dart';
 
 import 'contains_color.dart';
 import 'contains_turn_at_position.dart';

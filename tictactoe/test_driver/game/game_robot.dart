@@ -6,22 +6,22 @@ import 'package:tictactoe/game/position.dart';
 import '../core/driver_handler_messages.dart';
 import '../core/robot/robot.dart';
 
-class GameRobot extends Robot {
-  Future<void> tapStartButton() async {
-    final finder = find.byValueKey(homePageStartNewGameRaisedButton);
-    await isVisible(finder);
-    await tap(finder);
-  }
-
-  Future<void> reset() async {
-    while (!await resetWith(find.byValueKey(homePageAppBar))) {
-      await goBack();
+  class GameRobot extends Robot {
+    Future<void> tapStartButton() async {
+      final finder = find.byValueKey(homePageStartNewGameRaisedButton);
+      await isVisible(finder);
+      await tap(finder);
     }
-  }
 
-  Future<bool> isShowingHomePage() async {
-    return await isVisible(find.byValueKey(homePageAppBar));
-  }
+    Future<void> reset() async {
+      while (!await resetWith(find.byValueKey(homePageAppBar))) {
+        await goBack();
+      }
+    }
+
+    Future<bool> isShowingHomePage() async {
+      return await isVisible(find.byValueKey(homePageAppBar));
+    }
 
   Future<bool> isShowingPlayerPage() async {
     return await isVisible(find.byValueKey(playerPageAppBar));
@@ -135,7 +135,7 @@ class GameRobot extends Robot {
     await shapeContainsColor(finder, '0xff404040');
   }
 
-  Future<void> listTilesInList(
+  Future<void> hasTurnAtIndex(
       int index, Position position, String playerName, String shape) async {
     final finder = find.byValueKey(gamePageTurnsListView);
 

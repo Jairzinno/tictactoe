@@ -7,6 +7,7 @@ import 'package:tictactoe/turn/turn.dart';
 
 class GameService {
   Game _game;
+
   StreamController<List<Turn>> _historyController;
 
   Stream<List<Turn>> get history => _historyController.stream;
@@ -29,6 +30,11 @@ class GameService {
     _game.start();
   }
 
+  void stop() {
+    _game.stop();
+    _historyController.close();
+  }
+
   void positionTapped(Position position) {
     final turn = _game.addTurnForPosition(position);
     if (turn != null) {
@@ -37,11 +43,6 @@ class GameService {
         _game.changePlayer();
       }
     }
-  }
-
-  void stop() {
-    _game.stop();
-    _historyController.close();
   }
 
   Shape shapeForPosition(Position position) => _game.shapeForPosition(position);

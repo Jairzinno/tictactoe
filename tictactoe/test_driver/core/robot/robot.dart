@@ -1,6 +1,5 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
-import 'package:tictactoe/game/position.dart';
 
 import '../device/device_type.dart';
 import '../driver_handler_messages.dart';
@@ -14,8 +13,6 @@ class Robot {
     _driver = driver;
   }
 
-  FlutterDriver get driver => _driver;
-
   Future<bool> get isMobile async {
     final _deviceType = await _currentDeviceType();
     return _deviceType == DeviceType.phone.toString();
@@ -28,6 +25,7 @@ class Robot {
 
   Future<String> _currentDeviceType() async {
     final _deviceType = await requestData(deviceType);
+
     return _deviceType;
   }
 
@@ -67,21 +65,21 @@ class Robot {
 
   Future<void> textfieldContainsText(
       SerializableFinder finder, String text) async {
-    expect(await findTextField(finder, _driver), textFieldContains(text));
+    expect(await findWidget(finder, _driver), textFieldContains(text));
   }
 
   Future<void> textFieldContainsNoText(SerializableFinder finder) async {
-    expect(await findTextField(finder, _driver), textFieldIsEmpty);
+    expect(await findWidget(finder, _driver), textFieldIsEmpty);
   }
 
   Future<void> shapeContainsColor(
       SerializableFinder finder, String color) async {
-    expect(await findShape(finder, _driver), containsColor(color));
+    expect(await findWidget(finder, _driver), containsColor(color));
   }
 
   Future<void> shapeDoesNotContainColor(
       SerializableFinder finder, String color) async {
-    expect(await findShape(finder, _driver), doesNotContainColor(color));
+    expect(await findWidget(finder, _driver), doesNotContainColor(color));
   }
 
   Future<String> requestData(String message) async {
@@ -94,7 +92,7 @@ class Robot {
 
   Future<void> findTurnAtIndex(SerializableFinder finder, int index,
       String position, String playerName, String shape) async {
-    expect(await findListTiles(finder, _driver),
+    expect(await findWidget(finder, _driver),
         containsTurnAtIndex(index, position, playerName, shape));
   }
 }

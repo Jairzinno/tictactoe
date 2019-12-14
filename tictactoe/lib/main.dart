@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:tictactoe/home/home_page.dart';
 import 'package:tictactoe/game/game_service.dart';
 
-void main() => runApp(MyApp(
+void main() => runApp(TicTacToeApp(
       gameService: GameService(),
     ));
 
-class MyApp extends StatelessWidget {
+class TicTacToeApp extends StatelessWidget {
   final GameService gameService;
 
-  const MyApp({Key key, this.gameService}) : super(key: key);
+  const TicTacToeApp({Key key, this.gameService}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
